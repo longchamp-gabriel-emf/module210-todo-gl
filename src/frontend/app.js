@@ -1,6 +1,8 @@
 //const apiEndpoint = "https://fa-todo-backend-baqmes.azurewebsites.net/api/tasks";
 const apiEndpoint = "https://ctnr210gabriel.jollybush-90999e03.northeurope.azurecontainerapps.io/api/tasks";
 
+// test 
+
 $(document).ready(function () {
   // Charger les tâches au démarrage
   loadTasks();
