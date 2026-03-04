@@ -8,7 +8,7 @@ on:
       - "src/backend/**"
 
 env:
-  REGISTRY: ${{ secrets.ACR_LOGIN_SERVER }}
+  REGISTRY: longchampregistry.azurecr.io
   IMAGE_NAME: backend-app
 
 jobs:
@@ -16,11 +16,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
       # Récupération du code
       - name: Checkout repository
         uses: actions/checkout@v3
 
       # Connexion à Azure Container Registry
+=======
+      # 1️⃣ Récupérer le code du repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Login à Azure Container Registry
+>>>>>>> 528b34bc7a04dfb9c0f914decc1c7113ae59faf6
       - name: Login to Azure Container Registry
         uses: docker/login-action@v2
         with:
@@ -28,14 +36,22 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
+<<<<<<< HEAD
       # Build de l’image Docker
+=======
+      # 3️⃣ Build de l'image Docker
+>>>>>>> 528b34bc7a04dfb9c0f914decc1c7113ae59faf6
       - name: Build Docker image
         run: |
           docker build \
-            -t $REGISTRY/$IMAGE_NAME:${{ github.sha }} \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
             ./src/backend
 
+<<<<<<< HEAD
       # Push de l’image vers ACR
+=======
+      # 4️⃣ Push de l'image vers la registry
+>>>>>>> 528b34bc7a04dfb9c0f914decc1c7113ae59faf6
       - name: Push Docker image
         run: |
-          docker push $REGISTRY/$IMAGE_NAME:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
